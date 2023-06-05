@@ -1,4 +1,4 @@
-import './App.css';
+import './index.css';
 import 'reset-css';
 import Header from './Components/Header';
 import List from './Components/List';

@@ -1,13 +1,89 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body{
+  background-color: #eee;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.header{
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.header-title{
+  font-size: 36px;
+  padding-top: 60px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.container{
+  display: flex;
+  background-color: red;
+  margin: 0 auto;
+  width: 1000px;
+}
+
+.list-item-container{
+  display: grid;
+  width: 700px;
+  background-color: yellow;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, minmax(100px, auto));
+}
+
+.list-item{
+  background-color: #fff;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.list-item:first-child,
+.list-item:nth-child(4){
+  margin-left: 10px;
+}
+
+.list-item:nth-child(4),
+.list-item:nth-child(5),
+.list-item:nth-child(6){
+  margin-bottom: 10px;
+}
+
+.list-img{
+  width: 100%;
+  margin-top: 10px;
+}
+
+.list-item-body{
+  padding: 15px;
+  display: flex;
+}
+
+.list-item-title{
+  font-size: 20px;
+  color: tomato;
+}
+
+.list-item-price{
+  margin-top: 5px;
+  color: gray;
+}
+
+.list-btn-container{
+  width: 100%;
+  position: relative;
+}
+
+.list-btn{
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  background-color: #000;
+  border-radius: 5px;
+  right: 0;
+  color: #fff;
+  text-align: center;
+  font-size: 24px;
+  line-height: 36px;
+  cursor: pointer;
 }
