@@ -1,10 +1,11 @@
 import './App.css';
 import 'reset-css';
+import Header from './Components/Header';
 
 function App() {
   return (
     <div className="App">
-      <h1>안녕하세요</h1>
+      <Header></Header>
     </div>
   );
 }
