@@ -16,3 +16,11 @@ body{
   margin-bottom: 20px;
   font-weight: bold;
 }
+
+.container{
+  display: flex;
+  background-color: red;
+  margin: 0 auto;
+  width: 1000px;
+  height: 100px;
+}

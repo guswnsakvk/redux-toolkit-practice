@@ -1,11 +1,15 @@
 import './App.css';
 import 'reset-css';
 import Header from './Components/Header';
+import List from './Components/List';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Header></Header>
+      <div className='container'>
+        <List></List>
+      </div>
     </div>
   );
 }
