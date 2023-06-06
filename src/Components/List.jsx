@@ -7,102 +7,30 @@ export default function List(){
 
   return(
     <div className="list-item-container">
-      <div className="list-item">
-        <img 
-          className="list-img"
-          src="image/fruit1.jpg"
-          alt="Tangerine"
-        ></img>
-        <div className="list-item-body">
-          <div>
-            <p className="list-item-title">Tangerine</p>
-            <p className="list-item-price">$ 10</p>
-          </div>
-          <div className="list-btn-container">
-            <div className="list-btn">+</div>
-          </div>
-        </div>
-      </div>
-      <div className="list-item">
-        <img 
-          className="list-img"
-          src="image/fruit1.jpg"
-          alt="Tangerine"
-        ></img>
-        <div className="list-item-body">
-          <div>
-            <p className="list-item-title">Tangerine</p>
-            <p className="list-item-price">$ 10</p>
-          </div>
-          <div className="list-btn-container">
-            <div className="list-btn">+</div>
-          </div>
-        </div>
-      </div>
-      <div className="list-item">
-        <img 
-          className="list-img"
-          src="image/fruit1.jpg"
-          alt="Tangerine"
-        ></img>
-        <div className="list-item-body">
-          <div>
-            <p className="list-item-title">Tangerine</p>
-            <p className="list-item-price">$ 10</p>
-          </div>
-          <div className="list-btn-container">
-            <div className="list-btn">+</div>
-          </div>
-        </div>
-      </div>
-      <div className="list-item">
-        <img 
-          className="list-img"
-          src="image/fruit1.jpg"
-          alt="Tangerine"
-        ></img>
-        <div className="list-item-body">
-          <div>
-            <p className="list-item-title">Tangerine</p>
-            <p className="list-item-price">$ 10</p>
-          </div>
-          <div className="list-btn-container">
-            <div className="list-btn">+</div>
-          </div>
-        </div>
-      </div>
-      <div className="list-item">
-        <img 
-          className="list-img"
-          src="image/fruit1.jpg"
-          alt="Tangerine"
-        ></img>
-        <div className="list-item-body">
-          <div>
-            <p className="list-item-title">Tangerine</p>
-            <p className="list-item-price">$ 10</p>
-          </div>
-          <div className="list-btn-container">
-            <div className="list-btn">+</div>
-          </div>
-        </div>
-      </div>
-      <div className="list-item">
-        <img 
-          className="list-img"
-          src="image/fruit1.jpg"
-          alt="Tangerine"
-        ></img>
-        <div className="list-item-body">
-          <div>
-            <p className="list-item-title">Tangerine</p>
-            <p className="list-item-price">$ 10</p>
-          </div>
-          <div className="list-btn-container">
-            <div className="list-btn">+</div>
-          </div>
-        </div>
-      </div>
+      {
+        a.products.map((product) => {
+          const {id, title, price} = product
+
+          return(
+            <div className="list-item">
+              <img 
+                className="list-img"
+                src={`image/fruit${id}.jpg`}
+                alt="Tangerine"
+              ></img>
+              <div className="list-item-body">
+                <div>
+                  <p className="list-item-title">{title}</p>
+                  <p className="list-item-price">$ {price}</p>
+                </div>
+                <div className="list-btn-container">
+                  <div className="list-btn">+</div>
+                </div>
+              </div>
+            </div>
+          )
+        })
+      }
     </div>
   )
 }
