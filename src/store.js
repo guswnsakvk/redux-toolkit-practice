@@ -41,9 +41,40 @@ let products = createSlice({
   ]
 })
 
+let orders = createSlice({
+  name : 'orders',
+  initialState : [],
+  reducers : {
+    addOrder(state, a){
+      console.log(state)
+      const finded = state.find((order) => order.id === a.payload)
+      console.log(finded)
+
+      if (finded === undefined){
+        console.log([...state, {id : a.payload, quantity: 1}])
+        return [...state, {id : a.payload, quantity: 1}]
+      } else{
+        return state.map((order) => {
+          if (order.id === a.payload){
+            return{
+              id : order.id,
+              quantity: order.quantity + 1
+            }
+          } else{
+            return order
+          }
+        })
+      }
+    }
+  }
+})
+
+export let {addOrder} = orders.actions
+
 export default configureStore({
   reducer: { 
     user : user.reducer,
-    products : products.reducer
+    products : products.reducer,
+    orders : orders.reducer
   }
 })

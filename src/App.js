@@ -2,6 +2,7 @@ import './index.css';
 import 'reset-css';
 import Header from './Components/Header';
 import List from './Components/List';
+import Order from './Components/Order.jsx';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Header></Header>
       <div className='container'>
         <List></List>
+        <Order></Order>
       </div>
     </div>
   );

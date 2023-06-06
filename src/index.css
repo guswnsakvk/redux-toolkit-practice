@@ -19,7 +19,7 @@ body{
 
 .container{
   display: flex;
-  background-color: red;
+  /*background-color: red;*/
   margin: 0 auto;
   width: 1000px;
 }
@@ -27,7 +27,7 @@ body{
 .list-item-container{
   display: grid;
   width: 700px;
-  background-color: yellow;
+  /*background-color: yellow;*/
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, minmax(100px, auto));
 }
@@ -36,6 +36,7 @@ body{
   background-color: #fff;
   margin-right: 10px;
   margin-top: 10px;
+  border-radius: 5px;
 }
 
 .list-item:first-child,
@@ -87,4 +88,43 @@ body{
   font-size: 24px;
   line-height: 36px;
   cursor: pointer;
+}
+
+/*Order.jsx*/
+.empty{
+  margin-top: 10px;
+  width: 280px;
+  height: 140px;
+  background-color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  padding-top: 50px;
+}
+
+
+.empty-title{
+  font-size: 24px;
+  color: gray;
+}
+
+.empty-subtitle{
+  font-size: 12px;
+  color: grey;
+}
+
+.empty-title,
+.empty-subtitle {
+  margin: 12px auto;
+}
+
+.order{
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 260px;
+}
+
+.order-container{
+  width: 100%;
+  background-color: #fff;
+  border-radius: 5px;
 }

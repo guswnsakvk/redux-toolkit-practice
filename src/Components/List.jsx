@@ -1,9 +1,11 @@
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { addOrder } from "../store"
 import "../index.css"
 
 export default function List(){
   let a = useSelector((state) => {return state})
   console.log(a)
+  let dispatch = useDispatch()
 
   return(
     <div className="list-item-container">
@@ -12,7 +14,7 @@ export default function List(){
           const {id, title, price} = product
 
           return(
-            <div className="list-item">
+            <div className="list-item" key={id}>
               <img 
                 className="list-img"
                 src={`image/fruit${id}.jpg`}
@@ -24,7 +26,9 @@ export default function List(){
                   <p className="list-item-price">$ {price}</p>
                 </div>
                 <div className="list-btn-container">
-                  <div className="list-btn">+</div>
+                  <div className="list-btn" onClick={() => {
+                    dispatch(addOrder(id))
+                  }}>+</div>
                 </div>
               </div>
             </div>
