@@ -25,7 +25,7 @@ let products = createSlice({
     },
     {
       id: "4",
-      title: "pear",
+      title: "Pear",
       price: 40,
     },
     {
