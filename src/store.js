@@ -65,11 +65,16 @@ let orders = createSlice({
           }
         })
       }
+    },
+    deleteOrder(state, a){
+      console.log(state)
+      console.log(a.payload)
+      return state.filter((order) => order.id !== a.payload)
     }
   }
 })
 
-export let {addOrder} = orders.actions
+export let {addOrder, deleteOrder} = orders.actions
 
 export default configureStore({
   reducer: { 
