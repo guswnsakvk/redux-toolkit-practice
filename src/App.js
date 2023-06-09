@@ -2,7 +2,7 @@ import './index.css';
 import 'reset-css';
 import Header from './Components/Header';
 import List from './Components/List';
-import Order from './Components/Order.jsx';
+import Order from './Components/order.jsx';
 
 function App() {
   return (
