@@ -1,70 +1,211 @@
-# Getting Started with Create React App
+# redux-toolkit-practice
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+프로젝트 이동 링크 [redux-toolkit-practice](https://merry-trifle-1e814d.netlify.app).
 
-## Available Scripts
+![redux-toolkit](https://github.com/guswnsakvk/redux-toolkit-practice/assets/94600999/5c72f380-5004-4b6d-a81d-0cd3aaa8bfe2)
 
-In the project directory, you can run:
 
-### `npm start`
+## store
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+store.js에 짠 코드 정리
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### `products`
 
-### `npm test`
+상품의 정보를 담고 있는 리스트
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```javascript
+let products = createSlice({
+  name : 'products',
+  initialState : [
+    {
+      id: "1",
+      title: "Tangerine",
+      price: 10,
+    },
+    {
+      id: "2",
+      title: "Grape",
+      price: 20,
+    },
+    {
+      id: "3",
+      title: "Apple",
+      price: 30,
+    },
+    {
+      id: "4",
+      title: "Pear",
+      price: 40,
+    },
+    {
+      id: "5",
+      title: "Peach",
+      price: 50,
+    },
+    {
+      id: "6",
+      title: "Watermelon",
+      price: 60,
+    },
+  ]
+})
+```
 
-### `npm run build`
+### `orders`
+구매할 상품을 담는 리스트
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```javascript
+let orders = createSlice({
+  name : 'orders',
+  initialState : [],
+  reducers : {
+    addOrder(state, a){
+      console.log(state)
+      const finded = state.find((order) => order.id === a.payload)
+      console.log(finded)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+      if (finded === undefined){
+        console.log([...state, {id : a.payload, quantity: 1}])
+        return [...state, {id : a.payload, quantity: 1}]
+      } else{
+        return state.map((order) => {
+          if (order.id === a.payload){
+            return{
+              id : order.id,
+              quantity: order.quantity + 1
+            }
+          } else{
+            return order
+          }
+        })
+      }
+    },
+    deleteOrder(state, a){
+      console.log(state)
+      console.log(a.payload)
+      return state.filter((order) => order.id !== a.payload)
+    },
+    removeAll(state){
+      alert("주문감사합니다")
+      return state = []
+    }
+  }
+})
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `addOrder 함수`
+1\. order에 파라미터로 받은 id를 가진 것이 order에 있는지 확인
 
-### `npm run eject`
+2\. 만약 없다면 order에 {id : 파라미터, quantity : 1} 추가
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3\. 만약 있다면 order안에 id가 파라미터와 같은 거 obj의 quantity + 1 해주기
+```javascript
+addOrder(state, a){
+  console.log(state)
+  const finded = state.find((order) => order.id === payload)
+  console.log(finded)
+  if (finded === undefined){
+    console.log([...state, {id : a.payload, quantity: 1}])
+    return [...state, {id : a.payload, quantity: 1}]
+  } else{
+    return state.map((order) => {
+      if (order.id === a.payload){
+        return{
+          id : order.id,
+          quantity: order.quantity + 1
+        }
+      } else{
+        return order
+      }
+    })
+  }
+},
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `deleteOrder 함수`
+order 안에 입력받은 파라미터와 같은 id를 가진 obj 삭제
+```javascript
+deleteOrder(state, a){
+  console.log(state)
+  console.log(a.payload)
+  return state.filter((order) => order.id !== a.payload)
+},
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## removeAll
+order를 빈 배열로 초기화
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```javascript
+removeAll(state){
+  alert("주문감사합니다")
+  return state = []
+}
+```
 
-## Learn More
+## store에 있는 정보 export 설정
+1\. 함수를 export 할때는 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+export let { 함수이름 } = 변수이름.actions
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2\. 변수를 export 할때는
+export default configureStore({
+  reducer: { 
+    작명 : 변수이름.reducer,
+  }
+})
 
-### Code Splitting
+```javascript
+export let {addOrder, deleteOrder, removeAll} = orders.actions
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+export default configureStore({
+  reducer: { 
+    user : user.reducer,
+    products : products.reducer,
+    orders : orders.reducer
+  }
+})
+```
 
-### Analyzing the Bundle Size
+## Component
+컴포넌트에서 store에 있는 정보 불러오기
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### store 변수 가져오기
+1\. useSelector를 import 해오기
 
-### Making a Progressive Web App
+2\. 변수를 가져올 때는
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+-> let 작명 =  useSelector((state) => {return state})
+```javascript
+import { useSelector } from "react-redux"
 
-### Advanced Configuration
+export default function Test(){
+  let a = useSelector((state) => {return state})
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  return(
 
-### Deployment
+  )
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### store 함수 가져오기
+1\. useDispatch, 함수 import 해오기
 
-### `npm run build` fails to minify
+2\. useDispatch 함수 만들기
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+3\. 함수를 사용할 때 dispatch로 감싸주기
+```javascript
+import { useDispatch } from "react-redux"
+import { 함수이름 } from "../store"
+
+export default function Test(){
+  let dispatch = useDispatch()
+
+  return(
+    <div>
+      <button onClick={() => {
+        dispatch(함수이름())
+      }}></button>
+    </div>
+  )
+}
+```
