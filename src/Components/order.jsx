@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux"
-import { deleteOrder } from "../store"
+import { deleteOrder, removeAll } from "../store"
 import { BsFillBasket2Fill } from "react-icons/bs";
 
 export default function Order(){
@@ -50,7 +50,10 @@ export default function Order(){
         <div className="order-total-container">
           <p>Total</p>
           <p className="order-total-price">$ {total}</p>
-          <BsFillBasket2Fill className="order-total-icon"></BsFillBasket2Fill>
+          <BsFillBasket2Fill 
+            className="order-total-icon"
+            onClick={() => {dispatch(removeAll())}}  
+          ></BsFillBasket2Fill>
         </div>
       </div>
     </div>

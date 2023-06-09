@@ -70,11 +70,15 @@ let orders = createSlice({
       console.log(state)
       console.log(a.payload)
       return state.filter((order) => order.id !== a.payload)
+    },
+    removeAll(state){
+      alert("주문감사합니다")
+      return state = []
     }
   }
 })
 
-export let {addOrder, deleteOrder} = orders.actions
+export let {addOrder, deleteOrder, removeAll} = orders.actions
 
 export default configureStore({
   reducer: { 
